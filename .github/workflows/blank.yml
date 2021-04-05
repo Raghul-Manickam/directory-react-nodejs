@@ -1,0 +1,54 @@
+name: updater
+
+ on:
+  push:
+    branches: [ master ] 
+  # pull_request:
+  # branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    node-version: [12.x]
+		
+	steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+	  path: cd /opt/directory-react-nodejs
+
+    - name: Install dependencies
+      run: sudo npm install
+
+    - name: Run the tests
+      run: npm test
+
+    - name: Build
+      run: npm run build
+	  
+	steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+	  path: /opt/directory-react-nodejs/www  
+	  
+	-name: Install dependencies
+      run: sudo npm install  
+	  
+	- name: Check pm2 status
+      run: pm2 status
+
+    - name: Restarting pm2 process
+      run: pm2 restart all
+	  
+	name: Deploy
+
+      run: |
+        git config --global user.name $Raghul-Manickam
+        git config --global user.email $raghul.m@aitechindia.com
+        git remote set-url origin https://${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}@github.com/${directory-react-nodejs}
+        
+      env:
+        user_name: 'Raghul-Manickam'
+        user_email: 'raghul.m@aitechindia.com'
+        github_token: ${{ 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}}
+        repository: ${{ directory-react-nodejs }}
