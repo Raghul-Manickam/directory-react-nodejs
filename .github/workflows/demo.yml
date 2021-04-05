@@ -16,5 +16,5 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd /opt/directory-react-nodejs1
-            sudo npm install  
+            npm install  
             pm2 restart server
