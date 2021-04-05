@@ -1,0 +1,20 @@
+name: Deploy application
+ 
+on:
+  push:
+    branches: [ master ]
+ 
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Deploy NodeJS app
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{65.1.109.64}}
+          username: ${{ raghul }}
+          password: ${{ aws123 }}
+          script: |
+            cd /opt/directory-react-nodejs1/www
+            sudo npm install # install dependencies 
+            pm2 restart 0
