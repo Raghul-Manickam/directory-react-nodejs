@@ -11,9 +11,9 @@ jobs:
       - name: Deploy NodeJS app
         uses: appleboy/ssh-action@v0.1.2
         with:
-          host: ${{ 65.1.109.64 }}
-          username: ${{ raghul }}
-          password: ${{ aws123 }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd /opt/directory-react-nodejs1/www
             sudo npm install # install dependencies 
