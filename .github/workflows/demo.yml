@@ -16,5 +16,6 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd /opt/directory-react-nodejs1
+            git pull
             npm install  
             pm2 start server.js
